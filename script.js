@@ -104,16 +104,50 @@ function updateBackground(period) {
 
     let layerA = document.getElementById("bg-layer-a");
 
-    layerA.style.backgroundImage =
-        "url('" + image + "')";
-
-    layerA.classList.add("active");
+    if (layerA) {
+        layerA.style.backgroundImage = "url('" + image + "')";
+        layerA.classList.add("active");
+    }
 
 }
 
 
 // ------------------------------------------
-// 4. DETERMINE THE SKY PERIOD
+// 4. UPDATE THE GREETING TEXT & SUBTEXT
+// ------------------------------------------
+
+function updateGreeting(period) {
+
+    let greetingElement = document.getElementById("greeting");
+    let subtextElement = document.getElementById("subtext");
+
+    if (period === "dawn" || period === "morning") {
+
+        if (greetingElement) greetingElement.textContent = "Good Morning";
+        if (subtextElement) subtextElement.textContent = "A new day begins.";
+
+    } else if (period === "midday" || period === "afternoon") {
+
+        if (greetingElement) greetingElement.textContent = "Good Afternoon";
+        if (subtextElement) subtextElement.textContent = "Keep pushing forward.";
+
+    } else if (period === "sunset") {
+
+        if (greetingElement) greetingElement.textContent = "Good Evening";
+        if (subtextElement) subtextElement.textContent = "Time to wind down.";
+
+    } else {
+
+        if (greetingElement) greetingElement.textContent = "Good Night";
+        if (subtextElement) subtextElement.textContent = "Rest well for tomorrow.";
+
+    }
+
+}
+
+
+// ------------------------------------------
+// 5. DETERMINE THE SKY PERIOD
 // ------------------------------------------
 
 function updateSky() {
@@ -169,25 +203,22 @@ function updateSky() {
     console.log("Period:", timePeriod);
 
 
-    // Change the background
+    // Change background image and update heading text
 
     updateBackground(timePeriod);
+
+    updateGreeting(timePeriod);
 
 }
 
 
 // ------------------------------------------
-// 5. RUN THE CLOCK
+// 6. INITIALIZE AND START INTERVALS
 // ------------------------------------------
 
 updateClock();
 
 setInterval(updateClock, 1000);
-
-
-// ------------------------------------------
-// 6. RUN THE SKY
-// ------------------------------------------
 
 updateSky();
 
