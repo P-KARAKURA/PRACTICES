@@ -119,7 +119,7 @@ function updateBackground(period) {
 function updateGreeting(period) {
 
     let greetingElement = document.getElementById("greeting");
-    let subtextElement = document.getElementById("subtext");
+    let subtextElement = document.getElementById("mood");
 
     if (period === "dawn" || period === "morning") {
 
